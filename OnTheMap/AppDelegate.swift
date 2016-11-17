@@ -88,6 +88,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    var data: [[String:AnyObject]]?
+    func storeData( newData: [[String:AnyObject]] ){
+        data = newData
+    }
+    func retrieveData() -> [[String:AnyObject]] {
+        return data!
+    }
 
 }
 
