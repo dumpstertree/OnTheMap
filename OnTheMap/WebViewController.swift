@@ -16,6 +16,15 @@ class WebViewController: UIViewController {
     @IBOutlet weak var webView: UIWebView!
     
     override func viewDidLoad() {
+        
+        // Try to load URL
+        print(targetUrl)
+        if (targetUrl == nil){
+            AlertDisplay.display(alertErrorType: .URLNotValid, controller: self)
+            return
+        }
+        
+        // Load URL
         let request = URLRequest(url: targetUrl)
         webView.loadRequest( request )
     }

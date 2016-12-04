@@ -10,5 +10,6 @@
 enum AlertErrorTypes: String{
     case InvalidLocation = "Location cannot be found, please try a new location."
     case TooManySimilarLocations = "Multiple results for the location you are searching for, try being more specific."
-    case NonValiURL = "The url you entered is not a valid url, please try a valid url."
+    case UserInvalidURL = "The url you entered is not a valid url, please try a valid url."
+    case URLNotValid = "The URL trying to be loaded is not valid."
 }

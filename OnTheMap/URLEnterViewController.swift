@@ -45,7 +45,7 @@ class URLEnterViewController: UIViewController, MKMapViewDelegate {
         // Invalid URL
         else{
             // Display ERROR
-            AlertDisplay.display(alertErrorType: .NonValiURL, controller: self)
+            AlertDisplay.display(alertErrorType: .UserInvalidURL, controller: self)
         }
     }
     
