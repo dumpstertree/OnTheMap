@@ -18,8 +18,7 @@ class WebViewController: UIViewController {
     override func viewDidLoad() {
         
         // Try to load URL
-        print(targetUrl)
-        if (targetUrl == nil){
+        if targetUrl == nil{
             AlertDisplay.display(alertErrorType: .URLNotValid, controller: self)
             return
         }

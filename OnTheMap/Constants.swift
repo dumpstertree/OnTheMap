@@ -12,9 +12,18 @@ struct Constants {
     struct UdacityAPI{
         
         static let SessionURL: URL =  NSURL(string: "https://www.udacity.com/api/session")! as URL
-        static let Method: String = "https://www.udacity.com/api/session"
-        static let MethodType: String = "POST"
+        static let UserDataMethod: String = "https://www.udacity.com/api/users/"
 
+        struct Methods{
+            
+        }
+        
+        struct MethodTypes{
+            static let POSTMethodType: String = "POST"
+            static let PUTMethodType: String = "PUT"
+            static let GETMethodType: String = "GET"
+        }
+        
         struct LoginKeys{
             static let MethodKey:   String = "udacity"
             static let UsernameKey: String = "username"
@@ -31,12 +40,30 @@ struct Constants {
         struct LoginValues{
             static var ExperationValue: String = ""
             static var IDValue: String = ""
-            static var AccountKeyValue: Int = -1
-            static var RegisteredValue: Int = -1
+            static var AccountKeyValue: String = "-1"
+            static var RegisteredValue: Bool = false
+        }
+        
+        struct AccountKeys{
+            static let UserKey: String = "user"
+            static let FirstNameKey: String = "first_name"
+            static let LastNameKey: String = "last_name"
+        }
+        
+        struct AccountValues{
+            static var FirstNameValue: String = ""
+            static var LastNameValue: String = ""
         }
     }
     
     struct ParseAPI{
+        
+        struct MethodTypes{
+            static let POSTMethodType: String = "POST"
+            static let PUTMethodType: String = "PUT"
+            static let GETMethodType: String = "GET"
+        }
+        
         static let ParseApplicationID: String = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
         static let RESTApiKey: String = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
     }

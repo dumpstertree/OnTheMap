@@ -24,6 +24,8 @@
 		150EBC641DC67A3A009A70DA /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 150EBC5D1DC67A3A009A70DA /* Roboto-Regular.ttf */; };
 		150EBC651DC67A3A009A70DA /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 150EBC5E1DC67A3A009A70DA /* Roboto-Thin.ttf */; };
 		150EBC661DC67A3A009A70DA /* udacity.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 150EBC5F1DC67A3A009A70DA /* udacity.pdf */; };
+		153B9F081E2BE20F0040FD3F /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B9F071E2BE20F0040FD3F /* StudentInformation.swift */; };
+		153B9F0A1E2BF0C70040FD3F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B9F091E2BF0C70040FD3F /* Model.swift */; };
 		1568C4871DDE2FB60035838C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568C4861DDE2FB60035838C /* WebViewController.swift */; };
 		1575270A1DC69A3300DCD25C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157527091DC69A3300DCD25C /* LoginViewController.swift */; };
 		1575270C1DC69E2400DCD25C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575270B1DC69E2400DCD25C /* MapViewController.swift */; };
@@ -56,6 +58,8 @@
 		150EBC5D1DC67A3A009A70DA /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		150EBC5E1DC67A3A009A70DA /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		150EBC5F1DC67A3A009A70DA /* udacity.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = udacity.pdf; sourceTree = "<group>"; };
+		153B9F071E2BE20F0040FD3F /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
+		153B9F091E2BF0C70040FD3F /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		1568C4861DDE2FB60035838C /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		157527091DC69A3300DCD25C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1575270B1DC69E2400DCD25C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -104,7 +108,6 @@
 				157527131DC6A06200DCD25C /* Model */,
 				150EBC551DC67740009A70DA /* View */,
 				150EBC441DC67379009A70DA /* Main.storyboard */,
-				1505DBE21DCF9D31002F8141 /* LocationTextDelegate.swift */,
 				150EBC4C1DC67379009A70DA /* LaunchScreen.storyboard */,
 				150EBC4F1DC67379009A70DA /* Info.plist */,
 				150EBC471DC67379009A70DA /* OnTheMap.xcdatamodeld */,
@@ -155,11 +158,12 @@
 		157527131DC6A06200DCD25C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				159CD1651DC6C5AE004E4D58 /* JsonParser.swift */,
 				15A3AD3F1DDE248D002B747C /* CustomPin.swift */,
+				153B9F071E2BE20F0040FD3F /* StudentInformation.swift */,
 				159CD1631DC6A7BE004E4D58 /* Constants.swift */,
-				1505DBE41DCFC736002F8141 /* AlertDisplay.swift */,
 				1505DBE61DCFD78C002F8141 /* ErrorHandeling.swift */,
+				1505DBE21DCF9D31002F8141 /* LocationTextDelegate.swift */,
+				153B9F091E2BF0C70040FD3F /* Model.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -175,6 +179,8 @@
 				15CFCC131DC7FB7A008D0213 /* ListViewController.swift */,
 				150EBC401DC67379009A70DA /* AppDelegate.swift */,
 				1568C4861DDE2FB60035838C /* WebViewController.swift */,
+				1505DBE41DCFC736002F8141 /* AlertDisplay.swift */,
+				159CD1651DC6C5AE004E4D58 /* JsonParser.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -211,7 +217,7 @@
 				TargetAttributes = {
 					150EBC3C1DC67379009A70DA = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 78C48PW3C4;
+						DevelopmentTeam = 3U25H7RMGQ;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -260,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				153B9F081E2BE20F0040FD3F /* StudentInformation.swift in Sources */,
 				1505DBE31DCF9D31002F8141 /* LocationTextDelegate.swift in Sources */,
 				1575270A1DC69A3300DCD25C /* LoginViewController.swift in Sources */,
 				150EBC491DC67379009A70DA /* OnTheMap.xcdatamodeld in Sources */,
@@ -269,6 +276,7 @@
 				157527181DC6A24E00DCD25C /* URLEnterViewController.swift in Sources */,
 				150EBC411DC67379009A70DA /* AppDelegate.swift in Sources */,
 				159CD1641DC6A7BE004E4D58 /* Constants.swift in Sources */,
+				153B9F0A1E2BF0C70040FD3F /* Model.swift in Sources */,
 				1505DBE51DCFC736002F8141 /* AlertDisplay.swift in Sources */,
 				15CFCC141DC7FB7B008D0213 /* ListViewController.swift in Sources */,
 				15A3AD401DDE248D002B747C /* CustomPin.swift in Sources */,
@@ -397,7 +405,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 78C48PW3C4;
+				DEVELOPMENT_TEAM = 3U25H7RMGQ;
 				INFOPLIST_FILE = OnTheMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dumpstertree.OnTheMap;
@@ -410,7 +418,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 78C48PW3C4;
+				DEVELOPMENT_TEAM = 3U25H7RMGQ;
 				INFOPLIST_FILE = OnTheMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dumpstertree.OnTheMap;

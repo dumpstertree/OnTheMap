@@ -11,22 +11,33 @@ import MapKit
 
 class LocationEnterViewController: UIViewController {
     
-    
+    // Outlets
     @IBOutlet weak var locationTextField: UITextField!
+    
+    // Instance Variables
     let locationTextDelegate = LocationTextDelegate()
     var enteredLocation: CLLocation!
 
+    // Override
     override func viewDidLoad() {
         super.viewDidLoad()
         locationTextField.delegate = locationTextDelegate
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FindOnMap"{
+            let nextView = segue.destination as! URLEnterViewController
+            nextView.enteredLocation = enteredLocation
+            nextView.enteredLocationSearchTerm = locationTextField.text!
+        }
+    }
     
-    
+    // Actions
     @IBAction func FindOnMap(_ sender: AnyObject) {
        getAddressToCoordinates( address: locationTextField.text! )
     }
     
-    func getAddressToCoordinates(address: String) {
+    // Helpers
+    private func getAddressToCoordinates(address: String) {
         
         let geoCoder = CLGeocoder()
         geoCoder.geocodeAddressString(address, completionHandler: { (placemarks, error) -> Void in
@@ -52,17 +63,8 @@ class LocationEnterViewController: UIViewController {
             }
         })
     }
-    
-    func segue( location: CLLocation ){
+    private func segue( location: CLLocation ){
         enteredLocation = location
         performSegue(withIdentifier: "FindOnMap", sender: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "FindOnMap"{
-            let nextView = segue.destination as! URLEnterViewController
-            nextView.enteredLocation = enteredLocation
-            nextView.enteredLocationSearchTerm = locationTextField.text!
-        }
     }
 }

@@ -13,8 +13,8 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var alreadyPosted: Bool = false;
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
@@ -89,13 +89,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    var data: [[String:AnyObject]]?
-    func storeData( newData: [[String:AnyObject]] ){
-        data = newData
+    var model = Model()
+    
+    func storeData( newData: [StudentInformation] ){
+        model.StudentInfo = newData
     }
-    func retrieveData() -> [[String:AnyObject]] {
-        return data!
+    
+    func retrieveData() -> [StudentInformation] {
+        return model.StudentInfo
     }
 
 }
+
+
+
+
 
