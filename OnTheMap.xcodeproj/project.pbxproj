@@ -11,7 +11,6 @@
 		1505DBE51DCFC736002F8141 /* AlertDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505DBE41DCFC736002F8141 /* AlertDisplay.swift */; };
 		1505DBE71DCFD78C002F8141 /* ErrorHandeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505DBE61DCFD78C002F8141 /* ErrorHandeling.swift */; };
 		150EBC411DC67379009A70DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150EBC401DC67379009A70DA /* AppDelegate.swift */; };
-		150EBC431DC67379009A70DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150EBC421DC67379009A70DA /* ViewController.swift */; };
 		150EBC461DC67379009A70DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 150EBC441DC67379009A70DA /* Main.storyboard */; };
 		150EBC491DC67379009A70DA /* OnTheMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 150EBC471DC67379009A70DA /* OnTheMap.xcdatamodeld */; };
 		150EBC4B1DC67379009A70DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 150EBC4A1DC67379009A70DA /* Assets.xcassets */; };
@@ -24,6 +23,9 @@
 		150EBC641DC67A3A009A70DA /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 150EBC5D1DC67A3A009A70DA /* Roboto-Regular.ttf */; };
 		150EBC651DC67A3A009A70DA /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 150EBC5E1DC67A3A009A70DA /* Roboto-Thin.ttf */; };
 		150EBC661DC67A3A009A70DA /* udacity.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 150EBC5F1DC67A3A009A70DA /* udacity.pdf */; };
+		152AED651E350D240064AC93 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152AED641E350D240064AC93 /* ParseClient.swift */; };
+		152AED671E3524B40064AC93 /* DismissibleTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152AED661E3524B40064AC93 /* DismissibleTextFieldDelegate.swift */; };
+		153556571E33DA0500FE52E5 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153556561E33DA0500FE52E5 /* UdacityClient.swift */; };
 		153B9F081E2BE20F0040FD3F /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B9F071E2BE20F0040FD3F /* StudentInformation.swift */; };
 		153B9F0A1E2BF0C70040FD3F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B9F091E2BF0C70040FD3F /* Model.swift */; };
 		1568C4871DDE2FB60035838C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568C4861DDE2FB60035838C /* WebViewController.swift */; };
@@ -44,7 +46,6 @@
 		1505DBE61DCFD78C002F8141 /* ErrorHandeling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandeling.swift; sourceTree = "<group>"; };
 		150EBC3D1DC67379009A70DA /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		150EBC401DC67379009A70DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		150EBC421DC67379009A70DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		150EBC451DC67379009A70DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		150EBC481DC67379009A70DA /* OnTheMap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OnTheMap.xcdatamodel; sourceTree = "<group>"; };
 		150EBC4A1DC67379009A70DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,6 +59,9 @@
 		150EBC5D1DC67A3A009A70DA /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		150EBC5E1DC67A3A009A70DA /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		150EBC5F1DC67A3A009A70DA /* udacity.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = udacity.pdf; sourceTree = "<group>"; };
+		152AED641E350D240064AC93 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
+		152AED661E3524B40064AC93 /* DismissibleTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissibleTextFieldDelegate.swift; sourceTree = "<group>"; };
+		153556561E33DA0500FE52E5 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		153B9F071E2BE20F0040FD3F /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		153B9F091E2BF0C70040FD3F /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		1568C4861DDE2FB60035838C /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +151,28 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		152AED621E350CEF0064AC93 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				153556561E33DA0500FE52E5 /* UdacityClient.swift */,
+				152AED641E350D240064AC93 /* ParseClient.swift */,
+			);
+			name = Clients;
+			sourceTree = "<group>";
+		};
+		152AED631E350CF60064AC93 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				157527091DC69A3300DCD25C /* LoginViewController.swift */,
+				1575270B1DC69E2400DCD25C /* MapViewController.swift */,
+				15CFCC131DC7FB7A008D0213 /* ListViewController.swift */,
+				157527151DC6A17100DCD25C /* LocationEnterViewController.swift */,
+				157527171DC6A24E00DCD25C /* URLEnterViewController.swift */,
+				1568C4861DDE2FB60035838C /* WebViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		157527101DC69EFE00DCD25C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +189,7 @@
 				159CD1631DC6A7BE004E4D58 /* Constants.swift */,
 				1505DBE61DCFD78C002F8141 /* ErrorHandeling.swift */,
 				1505DBE21DCF9D31002F8141 /* LocationTextDelegate.swift */,
+				152AED661E3524B40064AC93 /* DismissibleTextFieldDelegate.swift */,
 				153B9F091E2BF0C70040FD3F /* Model.swift */,
 			);
 			name = Model;
@@ -171,14 +198,9 @@
 		157527141DC6A06C00DCD25C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				150EBC421DC67379009A70DA /* ViewController.swift */,
-				157527091DC69A3300DCD25C /* LoginViewController.swift */,
-				1575270B1DC69E2400DCD25C /* MapViewController.swift */,
-				157527151DC6A17100DCD25C /* LocationEnterViewController.swift */,
-				157527171DC6A24E00DCD25C /* URLEnterViewController.swift */,
-				15CFCC131DC7FB7A008D0213 /* ListViewController.swift */,
+				152AED631E350CF60064AC93 /* ViewControllers */,
+				152AED621E350CEF0064AC93 /* Clients */,
 				150EBC401DC67379009A70DA /* AppDelegate.swift */,
-				1568C4861DDE2FB60035838C /* WebViewController.swift */,
 				1505DBE41DCFC736002F8141 /* AlertDisplay.swift */,
 				159CD1651DC6C5AE004E4D58 /* JsonParser.swift */,
 			);
@@ -266,11 +288,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				153556571E33DA0500FE52E5 /* UdacityClient.swift in Sources */,
+				152AED671E3524B40064AC93 /* DismissibleTextFieldDelegate.swift in Sources */,
+				152AED651E350D240064AC93 /* ParseClient.swift in Sources */,
 				153B9F081E2BE20F0040FD3F /* StudentInformation.swift in Sources */,
 				1505DBE31DCF9D31002F8141 /* LocationTextDelegate.swift in Sources */,
 				1575270A1DC69A3300DCD25C /* LoginViewController.swift in Sources */,
 				150EBC491DC67379009A70DA /* OnTheMap.xcdatamodeld in Sources */,
-				150EBC431DC67379009A70DA /* ViewController.swift in Sources */,
 				1575270C1DC69E2400DCD25C /* MapViewController.swift in Sources */,
 				157527161DC6A17100DCD25C /* LocationEnterViewController.swift in Sources */,
 				157527181DC6A24E00DCD25C /* URLEnterViewController.swift in Sources */,

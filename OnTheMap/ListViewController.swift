@@ -49,36 +49,13 @@ class ListViewController:  UIViewController {
     
     // Actions
     @IBAction func addLocationButtonClicked(_ sender: AnyObject) {
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        if appDelegate.alreadyPosted {
-            OperationQueue.main.addOperation {
-                
-                var alertController : UIAlertController!
-                
-                // Set alert Text
-                alertController = UIAlertController(title: "Overwrite?", message: "You have already posted a location and URL, would you like to overwrite the existing one?" , preferredStyle: UIAlertControllerStyle.alert)
-                
-                // Add Dismiss
-                alertController.addAction(UIAlertAction(title: "Overwrite", style: UIAlertActionStyle.default ){ action in self.performSegue(withIdentifier: "addLocation", sender: self) })
-                alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
-                
-                // Display
-                self.present(alertController, animated: true, completion: nil)
-            }
-        }
-        else{
-            performSegue(withIdentifier: "addLocation", sender: self)
-        }
+        performSegue(withIdentifier: "addLocation", sender: self)
     }
     @IBAction func refreshDataButtonClicked(_ sender: AnyObject) {
         refreshData()
     }
     @IBAction func logoutButtonClicked(_ sender: AnyObject) {
-        Constants.UdacityAPI.LoginValues.AccountKeyValue = "-1"
-        Constants.UdacityAPI.LoginValues.IDValue = ""
-        Constants.UdacityAPI.LoginValues.ExperationValue = ""
-        Constants.UdacityAPI.LoginValues.RegisteredValue = false
+        Constants.logOut()
         dismiss(animated: true, completion: nil)
     }
     
@@ -96,43 +73,22 @@ class ListViewController:  UIViewController {
         
         appDelegate.storeData(newData: data)
     }
-    
-    
     private func refreshData(){
         
-        // Task
-        let request = makeLoginRequest()
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { data, response, error in
+        ParseClient.taskForGETMethod(request: ParseClient.createLoginRequest(), completionHandlerForGET: { data, error in
             
             // Basic Error
-            if self.checkForErrors(error: error){
+            if self.checkForErrors( error: error ){
                 return
             }
             
-            // Parse
-            if let parsedResult = JsonParser.parseAsDictionary(data: data!) {
-
-                // Store Data
-                self.saveData( dictionary: parsedResult )
-                    
-                // Refresh table
-                self.tableView.reloadData()
-            }
-        }
-        task.resume()
-    }
-    private func makeLoginRequest() -> URLRequest {
-        let request = NSMutableURLRequest(url: NSURL(string: "https://parse.udacity.com/parse/classes/StudentLocation?limit=100")! as URL)
-        request.addValue(Constants.ParseAPI.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue(Constants.ParseAPI.RESTApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
-        return request as URLRequest
-    }
-    func checkURLValidity( string: String) -> Bool{
-        if let url = NSURL(string: string ) as? URL {
-            return  UIApplication.shared.canOpenURL(url)
-        }
-        return false
+            // Store Data
+            self.saveData(dictionary: data as! [String: AnyObject])
+        
+            // Reload
+            self.tableView.reloadData()
+            
+        })
     }
     private func checkForErrors( error: Error? ) -> Bool {
         
@@ -143,6 +99,13 @@ class ListViewController:  UIViewController {
         
         return false
     }
+    func checkURLValidity( string: String) -> Bool{
+        if let url = NSURL(string: string ) as? URL {
+            return  UIApplication.shared.canOpenURL(url)
+        }
+        return false
+    }
+
 }
 
 // Table View Extension

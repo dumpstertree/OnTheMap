@@ -12,6 +12,8 @@ class LoginViewController: UIViewController {
     
     //Instance Variables
     let session = URLSession.shared
+    let usernameTextDelegate = DismissibleTextFieldDelegate()
+    let passwordTextDelegate = DismissibleTextFieldDelegate()
     
     // Outlets
     @IBOutlet weak var UsernameTextField: UITextField!
@@ -20,6 +22,8 @@ class LoginViewController: UIViewController {
 
     // Overide
     override func viewWillAppear(_ animated: Bool) {
+        UsernameTextField.delegate = usernameTextDelegate
+        PasswordTextField.delegate = passwordTextDelegate
         lockUI(lock: false)
     }
     
@@ -29,7 +33,8 @@ class LoginViewController: UIViewController {
         lockUI(lock: true)
         
         // Login GET
-        let _ = taskForGETMethod( request: makeLoginRequest(), completionHandlerForGET: { results, error in
+        let request = UdacityClient.createLoginRequest(userName: UsernameTextField.text!, password: PasswordTextField.text!)
+        let _ = UdacityClient.taskForGETMethod( request: request, completionHandlerForGET: { results, error in
             
             if self.checkForErrors(error: error) {
                 self.login(login: false)
@@ -73,9 +78,9 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            print(data)
             // Account Data GET
-            let _ = self.taskForGETMethod( request: self.makeAccountRequest(), completionHandlerForGET: { results, error in
+            let request = UdacityClient.createAccountRequest()
+            let _ =  UdacityClient.taskForGETMethod( request: request, completionHandlerForGET: { results, error in
                 
                 if self.checkForErrors(error: error) {
                     self.login(login: false)
@@ -102,41 +107,12 @@ class LoginViewController: UIViewController {
                     return
                 }
                 
-                print(data)
-                
                 self.login(login: true)
             })
         } )
     }
     
     // Helper
-    private func taskForGETMethod( request: URLRequest, completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
-        
-        let task = session.dataTask(with: request as URLRequest) { data, response, error in
-            
-            // Check for Error
-            guard error == nil else {
-                completionHandlerForGET(nil, error as NSError?)
-                return
-            }
-            
-            // Unwrap Data
-            guard let data = data else {
-                completionHandlerForGET( nil, nil)
-                return
-            }
-            
-            // Cut first 5 bits
-            let newData = self.removeBits(bits: 5, data: data)
-            guard let parsedResult = JsonParser.parseAsDictionary(data: newData) else {
-                return completionHandlerForGET( nil, nil)
-            }
-            
-            return completionHandlerForGET( parsedResult as AnyObject?, nil)
-        }
-        task.resume()
-        return task
-    }
     private func checkForErrors( error: Error? ) -> Bool {
        
         if error != nil {
@@ -145,22 +121,6 @@ class LoginViewController: UIViewController {
         }
         
         return false
-    }
-    private func removeBits( bits: Int, data: Data ) -> Data {
-        return data.subdata(in: bits..<(data.count) as Range)
-    }
-    private func makeLoginRequest() -> URLRequest {
-        let request = NSMutableURLRequest(url: NSURL(string: "https://www.udacity.com/api/session")! as URL )
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "{\"udacity\": {\"username\": \"\(UsernameTextField.text!)\", \"password\": \"\(PasswordTextField.text!)\"}}".data(using: String.Encoding.utf8)
-        return request as URLRequest
-    }
-    private func makeAccountRequest() -> URLRequest {
-        let url = URL(string: "\(Constants.UdacityAPI.UserDataMethod)\(Constants.UdacityAPI.LoginValues.AccountKeyValue)")! as URL
-        let request = NSMutableURLRequest(url: url)
-        return request as URLRequest
     }
     private func lockUI( lock: Bool ){
         if lock{

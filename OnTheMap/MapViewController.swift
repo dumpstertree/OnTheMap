@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: UIViewController {
     
     // Instance Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -44,119 +44,47 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     // Actions
     @IBAction func addLocationButtonClicked(_ sender: AnyObject) {
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        if appDelegate.alreadyPosted {
-            OperationQueue.main.addOperation {
-                
-                var alertController : UIAlertController!
-                
-                // Set alert Text
-                alertController = UIAlertController(title: "Overwrite?", message: "You have already posted a location and URL, would you like to overwrite the existing one?" , preferredStyle: UIAlertControllerStyle.alert)
-
-                // Add Dismiss
-                alertController.addAction(UIAlertAction(title: "Overwrite", style: UIAlertActionStyle.default ){ action in self.performSegue(withIdentifier: "addLocation", sender: self) })
-                alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
-                
-                // Display
-                self.present(alertController, animated: true, completion: nil)
-            }
-        }
-        else{
-            performSegue(withIdentifier: "addLocation", sender: self)
-        }
+        performSegue(withIdentifier: "addLocation", sender: self)
     }
     @IBAction func refreshDataButtonClicked(_ sender: AnyObject) {
         refreshData()
     }
     @IBAction func logoutButtonClicked(_ sender: AnyObject) {
-        Constants.UdacityAPI.LoginValues.AccountKeyValue = "-1"
-        Constants.UdacityAPI.LoginValues.IDValue = ""
-        Constants.UdacityAPI.LoginValues.ExperationValue = ""
-        Constants.UdacityAPI.LoginValues.RegisteredValue = false
+        Constants.logOut()
         dismiss(animated: true, completion: nil)
     }
     @IBAction func unwindToMainView(segue: UIStoryboardSegue){
         refreshData()
     }
-  
-    // Mapkit Delegates
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        let identifier = "UserPosition"
-        
-        // Create new View
-        if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
-            annotationView.annotation = annotation
-            return annotationView
-        }
-            
-        // Reuse View
-        else{
-            
-            // Edit View
-            let annotationView = MKPinAnnotationView(annotation:annotation, reuseIdentifier:identifier)
-            annotationView.isEnabled = true
-            annotationView.canShowCallout = true
-            annotationView.animatesDrop = true
-            
-            // Apply Changes
-            let btn = UIButton(type: .detailDisclosure)
-            annotationView.rightCalloutAccessoryView = btn
-            return annotationView
-        }
-    }
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
-        if checkURLValidity(string: (view.annotation?.subtitle!)!){
-            performSegue(withIdentifier: "ShowWebView", sender: nil)
-        }
-        else{
-             AlertDisplay.display(alertErrorType: .URLNotValid, controller: self)
-        }
-    }
     
-    // Other
+    // Helper
     private func refreshData(){
         
         // Display Load Visual
         displayLoadVisual(display: true)
         lockUI(locked: true)
         
-        // Task
-        let request = makeLoginRequest()
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { data, response, error in
+        ParseClient.taskForGETMethod(request: ParseClient.createLoginRequest(), completionHandlerForGET: { data, error in
             
             // Basic Error
             if self.checkForErrors( error: error ){
                 return
             }
             
-            // Parse
-            if let parsedResult = JsonParser.parseAsDictionary(data: data!) {
-                
-                // Store Data
-                self.saveData(dictionary: parsedResult)
-                
-                // Remove Old Annotations
-                self.MapView.removeAnnotations(self.MapView.annotations)
-                
-                // Create new Annotations
-                self.createPins()
-                
-                // Dismiss Load visual
-                self.displayLoadVisual(display: false)
-                self.lockUI(locked: false)
-            }
-        }
-        task.resume()
-    }
-    private func makeLoginRequest() -> URLRequest {
-        let request = NSMutableURLRequest(url: NSURL(string: "https://parse.udacity.com/parse/classes/StudentLocation?limit=100")! as URL)
-        request.addValue(Constants.ParseAPI.ParseApplicationID, forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue(Constants.ParseAPI.RESTApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
-        return request as URLRequest
+            // Store Data
+            self.saveData(dictionary: data as! [String: AnyObject])
+            
+            // Remove Old Annotations
+            self.MapView.removeAnnotations(self.MapView.annotations)
+            
+            // Create new Annotations
+            self.createPins()
+            
+            // Dismiss Load visual
+            self.displayLoadVisual(display: false)
+            self.lockUI(locked: false)
+            
+        })
     }
     private func createPins( ){
         
@@ -198,12 +126,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             self.loadingLabel.isHidden = !display
         }
     }
-    private func checkURLValidity( string: String) -> Bool{
-        if let url = NSURL(string: string ) as? URL {
-            return  UIApplication.shared.canOpenURL(url)
-        }
-        return false
-    }
     private func saveData( dictionary: [String:AnyObject]){
         
         var data: [StudentInformation] = []
@@ -225,5 +147,50 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
         
         return false
+    }
+    func checkURLValidity( string: String) -> Bool{
+        if let url = NSURL(string: string ) as? URL {
+            return  UIApplication.shared.canOpenURL(url)
+        }
+        return false
+    }
+}
+
+// Mapkit Delegates
+extension MapViewController: MKMapViewDelegate{
+
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let identifier = "UserPosition"
+        
+        // Create new View
+        if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
+            annotationView.annotation = annotation
+            return annotationView
+        }
+            
+            // Reuse View
+        else{
+            
+            // Edit View
+            let annotationView = MKPinAnnotationView(annotation:annotation, reuseIdentifier:identifier)
+            annotationView.isEnabled = true
+            annotationView.canShowCallout = true
+            annotationView.animatesDrop = true
+            
+            // Apply Changes
+            let btn = UIButton(type: .detailDisclosure)
+            annotationView.rightCalloutAccessoryView = btn
+            return annotationView
+        }
+    }
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        if checkURLValidity(string: (view.annotation?.subtitle!)!){
+            performSegue(withIdentifier: "ShowWebView", sender: nil)
+        }
+        else{
+            AlertDisplay.display(alertErrorType: .URLNotValid, controller: self)
+        }
     }
 }

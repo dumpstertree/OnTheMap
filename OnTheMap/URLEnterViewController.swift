@@ -41,54 +41,26 @@ class URLEnterViewController: UIViewController, MKMapViewDelegate {
         // Valid URL
         if checkIfValidURL(urlString: urlTextField.text! ){
             
-            var request: NSMutableURLRequest!
-            if appDelegate.alreadyPosted{
-                request = createRequest(methodType: "PUT", method: "https://parse.udacity.com/parse/classes/StudentLocation/"+Constants.UdacityAPI.LoginValues.AccountKeyValue)
-            }
-            else{
-                request = createRequest(methodType: "PUT", method: "https://parse.udacity.com/parse/classes/StudentLocation/"+Constants.UdacityAPI.LoginValues.AccountKeyValue)
-                //request = createRequest(methodType: "POST", method: "https://parse.udacity.com/parse/classes/StudentLocation")
-            }
-            
-            let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            let request = ParseClient.createLocationRequest(mapString: enteredLocationSearchTerm, mediaURL: urlTextField.text!, lat: enteredLocation.coordinate.latitude, lon: enteredLocation.coordinate.longitude)
+            ParseClient.taskForPOSTMethod(request: request, completionHandlerForGET: { data, error in
                 if self.checkForErrors(error: error){
                     return
                 }
-                print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
-                print(response)
-                self.appDelegate.alreadyPosted = true
                 self.performSegue(withIdentifier: "unwindToMainView", sender: self)
-            }
-            task.resume()
+            })
         }
             
-            // Invalid URL
+        // Invalid URL
         else{
             AlertDisplay.display(alertErrorType: .UserInvalidURL, controller: self)
         }
     }
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "unwindToMainView", sender: self)
+    }
+    
     
     // Helper
-    private func createRequest( methodType: String, method: String ) -> NSMutableURLRequest {
-        print(method)
-        let request = NSMutableURLRequest(url: URL(string: method)!)
-        request.httpMethod = methodType
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
-        request.addValue("application/json",                         forHTTPHeaderField: "Content-Type")
-        
-        let uniqueKey = Constants.UdacityAPI.LoginValues.AccountKeyValue
-        let firstName = Constants.UdacityAPI.AccountValues.FirstNameValue
-        let lastName  = Constants.UdacityAPI.AccountValues.LastNameValue
-        let mapString = enteredLocationSearchTerm!
-        let mediaURL  = urlTextField.text!
-        let latitude  = enteredLocation.coordinate.latitude
-        let longitude = enteredLocation.coordinate.longitude
-        
-        request.httpBody = "{\"uniqueKey\": \"\(uniqueKey)\", \"firstName\": \"\(firstName)\" , \"lastName\": \"\(lastName)\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(mediaURL)\",\"latitude\": \(latitude), \"longitude\": \(longitude)}".data(using: String.Encoding.utf8)
-        
-        return request
-    }
     private func zoomCamera(){
         
         // Create Region

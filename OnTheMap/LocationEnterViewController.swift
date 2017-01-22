@@ -35,6 +35,9 @@ class LocationEnterViewController: UIViewController {
     @IBAction func FindOnMap(_ sender: AnyObject) {
        getAddressToCoordinates( address: locationTextField.text! )
     }
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "unwindToMainView", sender: self)
+    }
     
     // Helpers
     private func getAddressToCoordinates(address: String) {
