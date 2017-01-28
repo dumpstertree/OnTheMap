@@ -7,6 +7,6 @@
 //
 
 import Foundation
-class Model{
+struct Model{
     var StudentInfo: [StudentInformation] = []
 }

@@ -15,7 +15,7 @@ class MapViewController: UIViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     // Outlets
-    @IBOutlet weak var MapView: MKMapView!
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var loadingLabel: UILabel!
     @IBOutlet weak var addLocationToolbarItem: UIBarButtonItem!
@@ -25,21 +25,9 @@ class MapViewController: UIViewController {
     
     // Override
     override func viewDidLoad() {
-        MapView.delegate = self
+        mapView.delegate = self
         super.viewDidLoad()
         refreshData()
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "ShowWebView"{
-            let nextView = segue.destination as! WebViewController
-            guard let url = NSURL(string: MapView.selectedAnnotations[0].subtitle!! ) as? URL else{
-                AlertDisplay.display(alertErrorType: AlertErrorTypes.URLNotValid, controller: self)
-                return
-            }
-            
-            nextView.targetUrl = url
-        }
     }
     
     // Actions
@@ -65,7 +53,6 @@ class MapViewController: UIViewController {
         lockUI(locked: true)
         
         ParseClient.taskForGETMethod(request: ParseClient.createLoginRequest(), completionHandlerForGET: { data, error in
-            
             // Basic Error
             if self.checkForErrors( error: error ){
                 return
@@ -75,7 +62,7 @@ class MapViewController: UIViewController {
             self.saveData(dictionary: data as! [String: AnyObject])
             
             // Remove Old Annotations
-            self.MapView.removeAnnotations(self.MapView.annotations)
+            self.mapView.removeAnnotations(self.mapView.annotations)
             
             // Create new Annotations
             self.createPins()
@@ -87,7 +74,7 @@ class MapViewController: UIViewController {
         })
     }
     private func createPins( ){
-        
+
         let data = self.appDelegate.retrieveData()
         for i in 0..<data.count{
             
@@ -108,7 +95,7 @@ class MapViewController: UIViewController {
             
             // Add Pin to map
             DispatchQueue.main.async() { () -> Void in
-                self.MapView.addAnnotation(dropPin)
+                self.mapView.addAnnotation(dropPin)
             }
         }
     }
@@ -147,6 +134,15 @@ class MapViewController: UIViewController {
         }
         
         return false
+    }
+    func showWebView(){
+        
+        guard let url = NSURL(string: mapView.selectedAnnotations[0].subtitle!! ) as? URL else{
+            AlertDisplay.display(alertErrorType: AlertErrorTypes.URLNotValid, controller: self)
+            return
+        }
+        
+        UIApplication.shared.openURL(url)
     }
     func checkURLValidity( string: String) -> Bool{
         if let url = NSURL(string: string ) as? URL {
@@ -187,7 +183,7 @@ extension MapViewController: MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         if checkURLValidity(string: (view.annotation?.subtitle!)!){
-            performSegue(withIdentifier: "ShowWebView", sender: nil)
+            showWebView()
         }
         else{
             AlertDisplay.display(alertErrorType: .URLNotValid, controller: self)

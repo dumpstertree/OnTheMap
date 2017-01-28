@@ -36,7 +36,7 @@ class URLEnterViewController: UIViewController, MKMapViewDelegate {
     }
     
     // Actions
-    @IBAction func Submit(_ sender: AnyObject) {
+    @IBAction func submit(_ sender: AnyObject) {
         
         // Valid URL
         if checkIfValidURL(urlString: urlTextField.text! ){

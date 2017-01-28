@@ -28,7 +28,6 @@
 		153556571E33DA0500FE52E5 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153556561E33DA0500FE52E5 /* UdacityClient.swift */; };
 		153B9F081E2BE20F0040FD3F /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B9F071E2BE20F0040FD3F /* StudentInformation.swift */; };
 		153B9F0A1E2BF0C70040FD3F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B9F091E2BF0C70040FD3F /* Model.swift */; };
-		1568C4871DDE2FB60035838C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568C4861DDE2FB60035838C /* WebViewController.swift */; };
 		1575270A1DC69A3300DCD25C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157527091DC69A3300DCD25C /* LoginViewController.swift */; };
 		1575270C1DC69E2400DCD25C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1575270B1DC69E2400DCD25C /* MapViewController.swift */; };
 		157527121DC69EFE00DCD25C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157527111DC69EFE00DCD25C /* MapKit.framework */; };
@@ -64,7 +63,6 @@
 		153556561E33DA0500FE52E5 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		153B9F071E2BE20F0040FD3F /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		153B9F091E2BF0C70040FD3F /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		1568C4861DDE2FB60035838C /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		157527091DC69A3300DCD25C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1575270B1DC69E2400DCD25C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		157527111DC69EFE00DCD25C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -168,7 +166,6 @@
 				15CFCC131DC7FB7A008D0213 /* ListViewController.swift */,
 				157527151DC6A17100DCD25C /* LocationEnterViewController.swift */,
 				157527171DC6A24E00DCD25C /* URLEnterViewController.swift */,
-				1568C4861DDE2FB60035838C /* WebViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -305,7 +302,6 @@
 				15CFCC141DC7FB7B008D0213 /* ListViewController.swift in Sources */,
 				15A3AD401DDE248D002B747C /* CustomPin.swift in Sources */,
 				1505DBE71DCFD78C002F8141 /* ErrorHandeling.swift in Sources */,
-				1568C4871DDE2FB60035838C /* WebViewController.swift in Sources */,
 				159CD1661DC6C5AE004E4D58 /* JsonParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

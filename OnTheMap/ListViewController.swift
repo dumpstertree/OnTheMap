@@ -24,27 +24,8 @@ class ListViewController:  UIViewController {
         tableView.dataSource = self
     }
     override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.async{
-            self.tableView.reloadData()
-        }
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "ShowWebView"{
-            
-            let nextView = segue.destination as! WebViewController
-            guard let currentIndex = tableView.indexPathForSelectedRow else{
-                return
-            }
-            guard let row = tableView.cellForRow(at: currentIndex) else{
-                return
-            }
-            guard let url = NSURL(string: row.detailTextLabel!.text! ) as? URL else{
-                return
-            }
-            
-            nextView.targetUrl = url
-        }
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
     }
     
     // Actions
@@ -105,7 +86,20 @@ class ListViewController:  UIViewController {
         }
         return false
     }
-
+    func showWebView(){
+        
+        guard let currentIndex = tableView.indexPathForSelectedRow else{
+            return
+        }
+        guard let row = tableView.cellForRow(at: currentIndex) else{
+            return
+        }
+        guard let url = NSURL(string: row.detailTextLabel!.text! ) as? URL else{
+            return
+        }
+        
+        UIApplication.shared.openURL(url)
+    }
 }
 
 // Table View Extension
@@ -131,7 +125,7 @@ extension ListViewController:  UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if checkURLValidity( string: (tableView.cellForRow(at: indexPath)?.detailTextLabel?.text)! ){
-            performSegue(withIdentifier: "ShowWebView", sender: nil)
+            showWebView()
         }
         else{
             AlertDisplay.display(alertErrorType: .URLNotValid, controller: self)

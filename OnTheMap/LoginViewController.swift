@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var UsernameTextField: UITextField!
     @IBOutlet weak var PasswordTextField: UITextField!
     @IBOutlet weak var LoginButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     // Overide
     override func viewWillAppear(_ animated: Bool) {
@@ -28,7 +29,7 @@ class LoginViewController: UIViewController {
     }
     
     // Actions
-    @IBAction func Login(_ sender: AnyObject) {
+    @IBAction func login(_ sender: AnyObject) {
         
         lockUI(lock: true)
         
@@ -124,11 +125,13 @@ class LoginViewController: UIViewController {
     }
     private func lockUI( lock: Bool ){
         if lock{
+            activityIndicator.startAnimating()
             UsernameTextField.isEnabled = false
             PasswordTextField.isEnabled = false
             LoginButton.isEnabled       = false
         }
         else{
+            activityIndicator.stopAnimating()
             UsernameTextField.isEnabled = true
             PasswordTextField.isEnabled = true
             LoginButton.isEnabled       = true

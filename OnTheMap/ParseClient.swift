@@ -40,7 +40,6 @@ class ParseClient {
     
     // Tasks
     static public func taskForGETMethod( request: URLRequest, completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
-        
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             
@@ -56,9 +55,11 @@ class ParseClient {
                 return
             }
             
+            print("-         -1")
             guard let parsedResult = JsonParser.parseAsDictionary(data: data) else {
                 return completionHandlerForGET( nil, nil)
             }
+            print("-         -2")
             
             return completionHandlerForGET( parsedResult as AnyObject?, nil)
         }

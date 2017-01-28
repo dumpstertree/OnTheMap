@@ -57,22 +57,30 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="Login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xz3-0g-DHI"/>
+                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zyj-Cg-crA"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UdacityLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="CwW-El-SeJ" userLabel="UdacityLogo">
-                                <rect key="frame" x="0.0" y="133" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="133.5" width="375" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="D13-im-viy"/>
                                     <constraint firstAttribute="width" secondItem="CwW-El-SeJ" secondAttribute="height" multiplier="15:4" id="j6J-jn-vKr"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to Udacity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSr-fE-daO">
-                                <rect key="frame" x="125" y="263" width="125" height="21"/>
+                                <rect key="frame" x="125" y="263.5" width="125" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ypW-KJ-iXY">
+                                <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
+                                <subviews>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="eo6-Xi-o0p">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.57064445827595556" blue="0.34750622289660826" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -85,70 +93,22 @@
                             <constraint firstItem="gqh-g2-S1K" firstAttribute="top" secondItem="B8y-69-kek" secondAttribute="bottom" constant="10" id="bb2-kE-eh2"/>
                             <constraint firstItem="zSr-fE-daO" firstAttribute="top" secondItem="CwW-El-SeJ" secondAttribute="bottom" constant="30" id="j7h-Ak-XNc"/>
                             <constraint firstItem="jrH-qW-hDC" firstAttribute="top" secondItem="zSr-fE-daO" secondAttribute="bottom" constant="30" id="keP-IC-0GB"/>
+                            <constraint firstItem="ypW-KJ-iXY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="lF8-em-hVF"/>
                             <constraint firstItem="B8y-69-kek" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="urA-un-9L0"/>
+                            <constraint firstItem="ypW-KJ-iXY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vmg-Tp-fgW"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="LoginButton" destination="gqh-g2-S1K" id="cfX-zu-WqR"/>
                         <outlet property="PasswordTextField" destination="B8y-69-kek" id="imN-X1-UEy"/>
                         <outlet property="UsernameTextField" destination="jrH-qW-hDC" id="Ipm-gu-suN"/>
+                        <outlet property="activityIndicator" destination="eo6-Xi-o0p" id="ssy-fR-9FW"/>
                         <segue destination="bhy-1V-W65" kind="show" identifier="Login" id="o9d-y9-ttB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-700" y="139"/>
-        </scene>
-        <!--WebView-->
-        <scene sceneID="ogs-OJ-lsl">
-            <objects>
-                <viewController title="WebView" id="MGX-Jo-geq" customClass="WebViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="MlS-9Q-0Nt"/>
-                        <viewControllerLayoutGuide type="bottom" id="bjN-R8-xGA"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="iEG-ho-6cp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tCA-Kn-fLO">
-                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Lk-LC-hNJ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="KW5-t1-yCS"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem id="37G-Nx-vUd">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="9UD-IA-QaU">
-                                            <connections>
-                                                <action selector="dismiss:" destination="MGX-Jo-geq" id="QNP-al-xYn"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="3Lk-LC-hNJ" firstAttribute="top" secondItem="iEG-ho-6cp" secondAttribute="top" id="8M7-hF-eme"/>
-                            <constraint firstItem="3Lk-LC-hNJ" firstAttribute="leading" secondItem="iEG-ho-6cp" secondAttribute="leading" id="8cZ-T1-VYm"/>
-                            <constraint firstItem="tCA-Kn-fLO" firstAttribute="leading" secondItem="iEG-ho-6cp" secondAttribute="leading" id="Cf9-Vj-fMa"/>
-                            <constraint firstItem="tCA-Kn-fLO" firstAttribute="top" secondItem="3Lk-LC-hNJ" secondAttribute="bottom" id="Xet-HR-qih"/>
-                            <constraint firstAttribute="trailing" secondItem="3Lk-LC-hNJ" secondAttribute="trailing" id="fQK-Wa-PMX"/>
-                            <constraint firstAttribute="trailing" secondItem="tCA-Kn-fLO" secondAttribute="trailing" id="vNa-ef-HZy"/>
-                            <constraint firstItem="bjN-R8-xGA" firstAttribute="top" secondItem="tCA-Kn-fLO" secondAttribute="bottom" id="xdv-EP-OiQ"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="webView" destination="tCA-Kn-fLO" id="xLI-B2-Ksf"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rmP-SU-AyT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1017" y="904"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="m5o-tg-LSb">
@@ -222,7 +182,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="FindOnMap:" destination="zZs-zt-Lnc" eventType="touchUpInside" id="cV0-lS-9CE"/>
+                                    <action selector="findOnMap:" destination="zZs-zt-Lnc" eventType="touchUpInside" id="KNs-UD-fmO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGZ-71-nAE">
@@ -235,10 +195,15 @@
                                     <segue destination="qlt-1V-XIH" kind="unwind" unwindAction="unwindToMainViewWithSegue:" id="6v1-c4-IPG"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="etj-g9-iKb">
+                                <rect key="frame" x="177" y="324" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.5725490196078431" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="DZ8-ro-6ML" firstAttribute="top" secondItem="gjz-yV-eLo" secondAttribute="bottom" constant="10" id="0yJ-T1-HMk"/>
+                            <constraint firstItem="etj-g9-iKb" firstAttribute="centerX" secondItem="CyS-Fe-Yur" secondAttribute="centerX" id="5uA-hJ-9tq"/>
+                            <constraint firstItem="etj-g9-iKb" firstAttribute="centerY" secondItem="CyS-Fe-Yur" secondAttribute="centerY" id="Bay-ZA-yv9"/>
                             <constraint firstItem="DZ8-ro-6ML" firstAttribute="leading" secondItem="CyS-Fe-Yur" secondAttribute="leadingMargin" id="D3G-oe-HFK"/>
                             <constraint firstItem="SGZ-71-nAE" firstAttribute="leading" secondItem="CyS-Fe-Yur" secondAttribute="leadingMargin" id="Jkf-D3-Fyc"/>
                             <constraint firstItem="a8L-kD-nwK" firstAttribute="leading" secondItem="CyS-Fe-Yur" secondAttribute="leadingMargin" id="MEE-Wf-Vpf"/>
@@ -258,6 +223,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="etj-g9-iKb" id="hgq-85-gzT"/>
                         <outlet property="locationTextField" destination="K8G-KS-GrG" id="AZC-Oc-U9K"/>
                         <segue destination="pU3-2R-K7f" kind="show" identifier="FindOnMap" id="hRW-ai-a46"/>
                     </connections>
@@ -296,6 +262,7 @@
                                 </state>
                                 <connections>
                                     <action selector="Submit:" destination="pU3-2R-K7f" eventType="touchUpInside" id="0xH-90-HFc"/>
+                                    <action selector="submit:" destination="pU3-2R-K7f" eventType="touchUpInside" id="zea-5P-esr"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter Your Link To Share" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HPZ-be-5Kq">
@@ -429,15 +396,14 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map" id="hHS-gb-rTR"/>
                     <connections>
-                        <outlet property="MapView" destination="NWG-3k-59q" id="ipm-8L-KYU"/>
                         <outlet property="addLocationToolbarItem" destination="SGF-1Z-FlK" id="5Uh-uw-Dtv"/>
                         <outlet property="loadingLabel" destination="NOP-mK-Wz0" id="qZN-bx-IF9"/>
                         <outlet property="loadingView" destination="ShJ-Sc-f2T" id="qVk-yR-eaO"/>
                         <outlet property="logoutToolbarItem" destination="tQL-cK-bLe" id="YwG-CU-k1q"/>
+                        <outlet property="mapView" destination="NWG-3k-59q" id="oJO-lb-NPy"/>
                         <outlet property="refreshToolbarItem" destination="WxV-CP-Iac" id="g2d-Yg-7Yi"/>
                         <outlet property="tabToolbarItem" destination="hHS-gb-rTR" id="wLy-8l-Pzm"/>
                         <segue destination="zZs-zt-Lnc" kind="presentation" identifier="addLocation" id="2pe-oy-UTD"/>
-                        <segue destination="MGX-Jo-geq" kind="presentation" identifier="ShowWebView" id="2jI-fI-3cf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ib0-wL-Xc9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -535,7 +501,6 @@
                     <tabBarItem key="tabBarItem" title="List" image="list" id="xg6-YC-OeQ"/>
                     <connections>
                         <outlet property="tableView" destination="olZ-UT-x4s" id="8zy-90-tRN"/>
-                        <segue destination="MGX-Jo-geq" kind="presentation" identifier="ShowWebView" id="df8-zj-UMk"/>
                         <segue destination="zZs-zt-Lnc" kind="presentation" identifier="addLocation" id="sDB-R0-u6P"/>
                     </connections>
                 </viewController>
@@ -551,7 +516,6 @@
         <image name="pin" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="df8-zj-UMk"/>
         <segue reference="sDB-R0-u6P"/>
     </inferredMetricsTieBreakers>
 </document>

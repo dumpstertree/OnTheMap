@@ -73,5 +73,7 @@ struct Constants {
         Constants.UdacityAPI.LoginValues.IDValue = ""
         Constants.UdacityAPI.LoginValues.ExperationValue = ""
         Constants.UdacityAPI.LoginValues.RegisteredValue = false
+        Constants.UdacityAPI.AccountValues.FirstNameValue = ""
+        Constants.UdacityAPI.AccountValues.LastNameValue = ""
     }
 }

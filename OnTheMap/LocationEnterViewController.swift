@@ -13,6 +13,7 @@ class LocationEnterViewController: UIViewController {
     
     // Outlets
     @IBOutlet weak var locationTextField: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // Instance Variables
     let locationTextDelegate = LocationTextDelegate()
@@ -32,7 +33,7 @@ class LocationEnterViewController: UIViewController {
     }
     
     // Actions
-    @IBAction func FindOnMap(_ sender: AnyObject) {
+    @IBAction func findOnMap(_ sender: AnyObject) {
        getAddressToCoordinates( address: locationTextField.text! )
     }
     @IBAction func cancelButtonPressed(_ sender: Any) {
@@ -42,9 +43,13 @@ class LocationEnterViewController: UIViewController {
     // Helpers
     private func getAddressToCoordinates(address: String) {
         
+        activityIndicator.startAnimating();
+        
         let geoCoder = CLGeocoder()
         geoCoder.geocodeAddressString(address, completionHandler: { (placemarks, error) -> Void in
            
+            self.activityIndicator.stopAnimating()
+            
             // Error Check
             if error != nil {
                 AlertDisplay.display(alertErrorType: .InvalidLocation, controller: self)

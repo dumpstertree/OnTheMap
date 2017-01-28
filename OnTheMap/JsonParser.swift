@@ -11,9 +11,9 @@ import Foundation
 class JsonParser{
     
     static func parseAsDictionary( data: Data) ->  [String:AnyObject]?{
-        
         let parsedResult: [String:AnyObject]!
         do {
+
             parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
         }
         catch {
